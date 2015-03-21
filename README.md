@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [![Stories in Ready](https://badge.waffle.io/brython-dev/brython.svg?label=ready&title=Ready)](http://waffle.io/brython-dev/brython)    [![Join the chat at https://gitter.im/brython-dev/brython](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/brython-dev/brython?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge "Chat with Brython Users and Developers")
 
 
@@ -118,3 +119,7 @@ Agile Development
 - **Throughput Graph:** *Statistics about our work...*
 
 [![Throughput Graph](https://graphs.waffle.io/brython-dev/brython/throughput.svg)](https://waffle.io/brython-dev/brython/metrics)
+=======
+# brain_trainer
+Brain trainer website
+>>>>>>> e6b7c49748d5798b0dbd64bb0dc2b92e4a89c9ce
