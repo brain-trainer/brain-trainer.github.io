@@ -42,6 +42,7 @@ app.controller('myCtrl', function($scope) {
       } else {
         $scope.show_btn_text = "Show";
       }
+      angular.element('#focus').trigger('focus');
     }
     $scope.check_answer = function(){
       if($scope.minus_button_text == '-'){
@@ -59,6 +60,7 @@ app.controller('myCtrl', function($scope) {
         $scope.input_class = "red-border";
       }
 
+      angular.element('#focus').trigger('focus');
       $scope.user_answer = "";
       $scope.minus_button_text = '+';
     }
@@ -85,6 +87,7 @@ app.controller('myCtrl', function($scope) {
         $scope.user_answer1 = $scope.user_answer;
         $scope.minus_button_text = '+';
       }
+      angular.element('#focus').trigger('focus');
     }
 
     $scope.genExp = function(){
@@ -120,6 +123,7 @@ app.controller('myCtrl', function($scope) {
       $scope.is_game = true;
       $scope.options_class = "";
       $scope.game_class = "active";
+      angular.element('#focus').trigger('focus');
     }
 
     $scope.options = function(){
@@ -132,4 +136,22 @@ app.controller('myCtrl', function($scope) {
     $scope.save_changes = function(){
       $scope.genExp(parseInt($scope.from), parseInt($scope.to));
     }
+});
+
+app.directive('focusOn', function() {
+   return function(scope, elem, attr) {
+      scope.$on('focusOn', function(e, name) {
+        if(name === attr.focusOn) {
+          elem[0].focus();
+        }
+      });
+   };
+});
+
+app.factory('focus', function ($rootScope, $timeout) {
+  return function(name) {
+    $timeout(function (){
+      $rootScope.$broadcast('focusOn', name);
+    });
+  }
 });
