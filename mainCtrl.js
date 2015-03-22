@@ -44,6 +44,11 @@ app.controller('myCtrl', function($scope) {
       }
     }
     $scope.check_answer = function(){
+      if($scope.minus_button_text == '-'){
+        $scope.user_answer1 = "-" + $scope.user_answer;
+      } else {
+        $scope.user_answer1 = $scope.user_answer;
+      }
       console.log($scope.answer);
       console.log($scope.user_answer1);
       if($scope.user_answer1 == "" + $scope.answer){
@@ -53,7 +58,7 @@ app.controller('myCtrl', function($scope) {
       } else {
         $scope.input_class = "red-border";
       }
-      
+
       $scope.user_answer = "";
       $scope.minus_button_text = '+';
     }
@@ -63,14 +68,10 @@ app.controller('myCtrl', function($scope) {
     }
 
     $scope.check_enter = function(event) {
-      if(event.key == "Enter"){
-        if($scope.minus_button_text == '-'){
-          $scope.user_answer1 = "-" + $scope.user_answer;
-        } else {
-          $scope.user_answer1 = $scope.user_answer;
-        }
+      console.log(event);
+      if(event.which == 13){
         $scope.check_answer();
-      } else if(event.key == '-'){
+      } else if(event.which == 45){
         event.preventDefault();
         $scope.minus_answer();
       }
