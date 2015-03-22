@@ -44,17 +44,16 @@ app.controller('myCtrl', function($scope) {
       }
     }
     $scope.check_answer = function(){
-      // console.log($scope.answer);
-      // console.log($scope.user_answer);
-      if($scope.user_answer1 == $scope.answer){
+      console.log($scope.answer);
+      console.log($scope.user_answer1);
+      if($scope.user_answer1 == "" + $scope.answer){
         $scope.input_class = "";
-        $scope.is_correct = "True";
         $scope.answer_is_show = false;
         $scope.genExp();
       } else {
-        $scope.is_correct = "False";
         $scope.input_class = "red-border";
       }
+      
       $scope.user_answer = "";
       $scope.minus_button_text = '+';
     }
