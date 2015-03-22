@@ -2,6 +2,7 @@ var app = angular.module('myApp', []);
 
 app.controller('myCtrl', function($scope) {
     $scope.answer_is_show = false;
+    $scope.user_answer = "";
     $scope.input_class = "";
     $scope.show_btn_text = "Show";
     $scope.is_options = false;
@@ -10,6 +11,13 @@ app.controller('myCtrl', function($scope) {
     $scope.to = 10;
     $scope.options_class = "";
     $scope.game_class = "active";
+    $scope.minus_button_text = "+";
+    $scope.user_answer1 = "";
+
+
+    $scope.get_minus_button_text = function(){
+      return $scope.minus_button_text;
+    }
 
     $scope.get_game_class = function(){
       return $scope.game_class;
@@ -38,7 +46,7 @@ app.controller('myCtrl', function($scope) {
     $scope.check_answer = function(){
       // console.log($scope.answer);
       // console.log($scope.user_answer);
-      if($scope.user_answer == $scope.answer){
+      if($scope.user_answer1 == $scope.answer){
         $scope.input_class = "";
         $scope.is_correct = "True";
         $scope.answer_is_show = false;
@@ -47,7 +55,8 @@ app.controller('myCtrl', function($scope) {
         $scope.is_correct = "False";
         $scope.input_class = "red-border";
       }
-      $scope.user_answer = null;
+      $scope.user_answer = "";
+      $scope.minus_button_text = '+';
     }
 
     $scope.get_exp = function(){
@@ -56,10 +65,28 @@ app.controller('myCtrl', function($scope) {
 
     $scope.check_enter = function(event) {
       if(event.key == "Enter"){
-        console.log(event);
-        $scope.check_answer()
-      };
+        if($scope.minus_button_text == '-'){
+          $scope.user_answer1 = "-" + $scope.user_answer;
+        } else {
+          $scope.user_answer1 = $scope.user_answer;
+        }
+        $scope.check_answer();
+      } else if(event.key == '-'){
+        event.preventDefault();
+        $scope.minus_answer();
+      }
     }
+
+    $scope.minus_answer = function(){
+      if($scope.minus_button_text == '+'){
+        $scope.user_answer1 = '-' + $scope.user_answer;
+        $scope.minus_button_text = '-';
+      } else {
+        $scope.user_answer1 = $scope.user_answer;
+        $scope.minus_button_text = '+';
+      }
+    }
+
     $scope.genExp = function(){
       symbs = ['+', '-', '*', '/'];
 

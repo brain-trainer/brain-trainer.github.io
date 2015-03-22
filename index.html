@@ -3,15 +3,6 @@
     <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <script src="jquery.min.js"></script>
-      <!--<script>
-      //   function add_red_border()
-      //     document.getElementById("answer_input").className += " red-border";
-      //
-      //   function remove_red_border()
-      //     document.getElementById("answer_input").className =
-      //      document.getElementById("answer_input").className.replace
-      //         ( /(?:^|\s)red-border(?!\S)/g , '' )
-      </script>-->
       <script src="angular.min.js"></script>
       <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
       <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
@@ -55,6 +46,7 @@
         <div ng-show="is_game">
           <h3 class="inline-block">{{ get_exp() }}</h3>
           <br /><div>
+            <button type="button" ng-click="minus_answer()" class="btn btn-default inline-block">{{ get_minus_button_text() }}</button>
             <input type="number" ng-keyPress="check_enter($event)" ng-model="user_answer" step="0.01" class="form-control inline-block {{ get_input_class() }}" placeholder="Enter your answer" required>
             <button type="button" ng-click="check_answer()" class="btn btn-default inline-block">Check</button>
           </div>
@@ -75,7 +67,7 @@
         <script src="mainCtrl.js"></script>
 
         <footer>
-          <span>Copyright &copy; by Michael Vietluzhskih</span>
+          <span>Copyright &copy; 2015 by Michael Vietluzhskih</span>
         </footer>
       </div>
     </body>
