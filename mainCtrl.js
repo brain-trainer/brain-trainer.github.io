@@ -68,7 +68,7 @@ app.controller('myCtrl', function($scope) {
     }
 
     $scope.check_enter = function(event) {
-      console.log(event.keyCode);
+      console.log(event);
       if(event.which == 13){
         $scope.check_answer();
       } else if(event.which == 45){
