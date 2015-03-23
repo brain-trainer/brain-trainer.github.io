@@ -35,6 +35,11 @@ app.controller('myCtrl', function($scope) {
       return $scope.input_class;
     }
 
+    $scope.skip = function(){
+      $scope.genExp();
+      angular.element('#focus').trigger('focus');
+    }
+
     $scope.show_answer = function(){
       $scope.answer_is_show = !$scope.answer_is_show;
       if ($scope.show_btn_text == "Show") {
@@ -68,7 +73,7 @@ app.controller('myCtrl', function($scope) {
     }
 
     $scope.check_enter = function(event) {
-      console.log(event);
+      // console.log(event);
       if(event.which == 13){
         $scope.check_answer();
       } else if(event.which == 45){
