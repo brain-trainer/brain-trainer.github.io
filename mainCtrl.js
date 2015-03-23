@@ -50,8 +50,6 @@ app.controller('myCtrl', function($scope) {
       } else {
         $scope.user_answer1 = $scope.user_answer;
       }
-      console.log($scope.answer);
-      console.log($scope.user_answer1);
       if($scope.user_answer1 == "" + $scope.answer){
         $scope.input_class = "";
         $scope.answer_is_show = false;
@@ -70,7 +68,7 @@ app.controller('myCtrl', function($scope) {
     }
 
     $scope.check_enter = function(event) {
-      console.log(event);
+      console.log(event.keyCode);
       if(event.which == 13){
         $scope.check_answer();
       } else if(event.which == 45){
