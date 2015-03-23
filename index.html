@@ -8,8 +8,9 @@
       <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
       <script src="bootstrap/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="style.css">
+      <script src="App.js"></script>
     </head>
-    <body ng-app="myApp" ng-controller="myCtrl" ng-init="genExp()">
+    <body ng-app="brainTrainer" ng-controller="mainCtrl">
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -20,15 +21,15 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand brand-img" href="#"><img alt="Brand" width="40" height="40" src="sheep.png" /></a>
-            <a class="navbar-brand" href="#">Brain Trainer</a>
+            <a class="navbar-brand brand-img" href="" ng-click="go_main()"><img alt="Brand" width="40" height="40" src="sheep.png" /></a>
+            <a class="navbar-brand" href="" ng-click="go_main()">Brain Trainer</a>
           </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Math Training <span class="sr-only">(current)</span></a></li>
-              <li><a href="#">Physics Training</a></li>
+              <li class="{{ get_math_class() }}"><a href="" ng-click="go_math()">Math Training <span class="sr-only">(current)</span></a></li>
+              <li class="{{ get_physics_class() }}"><a href="" ng-click="go_physics()">Physics Training</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="https://www.github.com/mishavetl/">Created By Michael Vietluzhskih</a></li>
@@ -38,16 +39,19 @@
         </div><!-- /.container-fluid -->
       </nav>
 
-      <div class="container">
+      <div class="container text-center" ng-show="main_page">
+        <h1>Welcome on Brain Trainer Website</h1>
+      </div>
+
+      <div class="container" ng-controller="physicsCtrl" ng-init="genExp()" ng-show="physics">
         <ul class="nav nav-pills">
           <li role="presentation" class="{{ get_game_class() }}"><a ng-click="game()" href="">Game</a></li>
           <li role="presentation" class="{{ get_options_class() }}"><a ng-click="options()" href="">Options</a></li>
         </ul>
         <div ng-show="is_game">
           <h3 class="inline-block">{{ get_exp() }}</h3>
-          <button type="button" ng-click="skip()" class="skip_button btn btn-default inline-block">Skip</button>
+          <button type="button" ng-click="skip()" class="skip_button1 pull-right btn btn-default inline-block">Skip</button>
           <br /><div>
-            <button type="button" ng-click="minus_answer()" class="btn btn-default inline-block">{{ get_minus_button_text() }}</button>
             <input type="number" id="focus" ng-keyPress="check_enter($event)" ng-model="user_answer" step="0.01" class="form-control inline-block {{ get_input_class() }}" placeholder="Enter your answer" required>
             <button type="button" ng-click="check_answer()" class="btn btn-default inline-block">Check</button>
           </div>
@@ -56,6 +60,7 @@
             <button type="button" ng-click="show_answer()" class="btn btn-default inline-block">{{ get_show_btn_text() }} Answer</button>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <h4 class="inline-block" ng-show="answer_is_show">{{ answer }}</h4>
+            <br /><br />
           </div>
         </div>
         <div ng-show="is_options">
@@ -65,11 +70,40 @@
           <h3 class="inline-block">To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
           <input type="number" class="form-control inline-block" ng-keyPress="save_changes()" ng-model="to"/>
         </div>
-        <script src="mainCtrl.js"></script>
-
-        <footer>
-          <p>Copyright &copy; 2015 by Michael Vietluzhskih</p>
-        </footer>
       </div>
+
+      <div class="container" ng-controller="mathCtrl" ng-init="genExp()" ng-show="math">
+        <ul class="nav nav-pills">
+          <li role="presentation" class="{{ get_game_class() }}"><a ng-click="game()" href="">Game</a></li>
+          <li role="presentation" class="{{ get_options_class() }}"><a ng-click="options()" href="">Options</a></li>
+        </ul>
+        <div ng-show="is_game">
+          <h3 class="inline-block">{{ get_exp() }}</h3>
+          <button type="button" ng-click="skip()" class="skip_button pull-right btn btn-default inline-block">Skip</button>
+          <br /><div>
+            <button type="button" ng-click="minus_answer()" class="btn btn-default inline-block">{{ get_minus_button_text() }}</button>
+            <input type="number" id="focus" ng-keyPress="check_enter($event)" ng-model="user_answer" step="0.01" class="form-control form-control1 inline-block {{ get_input_class() }}" placeholder="Enter your answer" required>
+            <button type="button" ng-click="check_answer()" class="btn btn-default inline-block">Check</button>
+          </div>
+          <br />
+          <div>
+            <button type="button" ng-click="show_answer()" class="btn btn-default inline-block">{{ get_show_btn_text() }} Answer</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <h4 class="inline-block" ng-show="answer_is_show">{{ answer }}</h4>
+            <br /><br />
+            <span class="label label-warning">* Round your answer to 2 symbols after dot</span>
+          </div>
+        </div>
+        <div ng-show="is_options">
+          <h3 class="inline-block">From&nbsp;&nbsp;</h3>
+          <input type="number" class="form-control inline-block" ng-keyPress="save_changes()" ng-model="from"/>
+          <br />
+          <h3 class="inline-block">To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+          <input type="number" class="form-control inline-block" ng-keyPress="save_changes()" ng-model="to"/>
+        </div>
+      </div>
+      <footer>
+        <p>Copyright &copy; 2015 by Michael Vietluzhskih</p>
+      </footer>
     </body>
 </html>

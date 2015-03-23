@@ -1,0 +1,112 @@
+<html>
+  <head>
+    <title>A tests</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <br>
+    <script>
+      function genExp(){
+        fq_dict={
+          'S':['m', 'cm', 'km'],
+          'v':['m/s', 'km/s', 'cm/s'],
+          'm':['kg', 'g', 'tonn']
+        };
+
+        fq = Math.floor((Math.random() * 3) + 1);
+        if (fq == 1) {
+          fg = 'S';
+          um = fq_dict['S'][Math.floor((Math.random() * 3) + 0)];
+          while (true) {
+            um1 = fq_dict['S'][Math.floor((Math.random() * 3) + 0)];
+            if (um1 != um) {
+              break
+            }
+          }
+
+          var num = Math.floor((Math.random() * 10) + 1);
+          var answer = 0;
+
+          if (um == 'm' && um1 == 'cm') {
+            answer = num * 100;
+          } else if (um == 'cm' && um1 == 'm') {
+            answer = num / 100;
+          } else if (um == 'km' && um1 == 'm') {
+            answer = num * 1000;
+          } else if (um == 'km' && um1 == 'cm') {
+            answer = num * 100000;
+          } else if (um == 'm' && um1 == 'km') {
+            answer = num / 1000;
+          } else if (um == 'cm' && um1 == 'km') {
+            answer = num / 100000;
+          }
+
+        } else if (fq == 2) {
+          fg = 'v';
+          um = fq_dict['v'][Math.floor((Math.random() * 3) + 0)];
+          while (true) {
+            um1 = fq_dict['v'][Math.floor((Math.random() * 3) + 0)];
+            if (um1 != um) {
+              break
+            }
+          }
+
+          var num = Math.floor((Math.random() * 10) + 1);
+          var answer = 0;
+
+          if (um == 'm/s' && um1 == 'cm/s') {
+            answer = num * 100;
+          } else if (um == 'cm/s' && um1 == 'm/s') {
+            answer = num / 100;
+          } else if (um == 'km/s' && um1 == 'm/s') {
+            answer = num * 1000;
+          } else if (um == 'km/s' && um1 == 'cm/s') {
+            answer = num * 100000;
+          } else if (um == 'm/s' && um1 == 'km/s') {
+            answer = num / 1000;
+          } else if (um == 'cm/s' && um1 == 'km/s') {
+            answer = num / 100000;
+          }
+
+        } else if (fq == 3) {
+          fg = 'm';
+          um = fq_dict['m'][Math.floor((Math.random() * 3) + 0)];
+          while (true) {
+            um1 = fq_dict['m'][Math.floor((Math.random() * 3) + 0)];
+            if (um1 != um) {
+              break
+            }
+          }
+          var num = Math.floor((Math.random() * 10) + 1);
+          var answer = 0;
+
+          if (um == 'kg' && um1 == 'g') {
+            answer = num * 1000;
+          } else if (um == 'g' && um1 == 'kg') {
+            answer = num / 1000;
+          } else if (um == 'kg' && um1 == 'tonn') {
+            answer = num * 1000;
+          } else if (um == 'tonn' && um1 == 'g') {
+            answer = num * 1000000;
+          } else if (um == 'tonn' && um1 == 'kg') {
+            answer = num * 1000;
+          } else if (um == 'g' && um1 == 'tonn') {
+            answer = num / 1000000;
+          }
+        }
+
+        var exp = num + ' ' + um + ' = ? ' + um1;
+        // console.log('fq: ' + fq);
+        console.log('um: ' + um);
+        console.log('um1: ' + um1);
+        console.log('num: ' + num);
+        console.log('exp: ' + exp);
+        console.log('answer: ' + answer);
+      }
+      genExp();
+    </script>
+    <p id="exp"></p>
+    <p id="answer"></p>
+    <p id="test"></p>
+  </body>
+</html>

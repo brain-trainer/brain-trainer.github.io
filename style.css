@@ -13,7 +13,11 @@
 }
 
 .form-control {
-  width: 50%;
+  width: 40%;
+}
+
+.form-control1 {
+  width: 36.9%;
 }
 
 .red-border {
@@ -30,6 +34,14 @@
   margin-bottom: 1%;
 }
 
+.skip_button1 {
+  margin-right: 45%;
+  margin-bottom: 1%;
+}
+
+.label-warning {
+  font-size: 12px;
+}
 
 footer {
   position: absolute;
