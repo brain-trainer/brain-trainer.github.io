@@ -109,9 +109,6 @@ app.controller('physicsCtrl', function($scope) {
       // console.log(event);
       if(event.which == 13){
         $scope.check_answer();
-      } else if(event.which == 45){
-        event.preventDefault();
-        $scope.minus_answer();
       }
     }
 
@@ -122,7 +119,11 @@ app.controller('physicsCtrl', function($scope) {
         'm':['kg', 'g', 'tonn']
       };
 
+      var num = Math.floor((Math.random() * $scope.to) + $scope.from);
+      var answer = 0;
+
       fq = Math.floor((Math.random() * 3) + 1);
+
       if (fq == 1) {
         fg = 'S';
         um = fq_dict['S'][Math.floor((Math.random() * 3) + 0)];
@@ -133,8 +134,6 @@ app.controller('physicsCtrl', function($scope) {
           }
         }
 
-        var num = Math.floor((Math.random() * $scope.to) + $scope.from);
-        var answer = 0;
 
         if (um == 'm' && um1 == 'cm') {
           answer = num * 100;
@@ -160,9 +159,6 @@ app.controller('physicsCtrl', function($scope) {
           }
         }
 
-        var num = Math.floor((Math.random() * 10) + 1);
-        var answer = 0;
-
         if (um == 'm/s' && um1 == 'cm/s') {
           answer = num * 100;
         } else if (um == 'cm/s' && um1 == 'm/s') {
@@ -186,8 +182,6 @@ app.controller('physicsCtrl', function($scope) {
             break
           }
         }
-        var num = Math.floor((Math.random() * 10) + 1);
-        var answer = 0;
 
         if (um == 'kg' && um1 == 'g') {
           answer = num * 1000;
@@ -204,7 +198,7 @@ app.controller('physicsCtrl', function($scope) {
         }
       }
 
-      var exp = num + ' ' + um + ' = ? ' + um1;
+      exp = num + ' ' + um + ' = ? ' + um1;
 
       $scope.exp = exp;
       $scope.answer = answer;
@@ -229,6 +223,11 @@ app.controller('physicsCtrl', function($scope) {
       $scope.genExp();
     }
 });
+
+
+
+// mathCtrl ########################
+
 
 
 app.controller('mathCtrl', function($scope) {
@@ -307,7 +306,7 @@ app.controller('mathCtrl', function($scope) {
       // console.log(event);
       if(event.which == 13){
         $scope.check_answer();
-      } else if(event.which == 45){
+      } else if(event.which == 45 || event.which == 43){
         event.preventDefault();
         $scope.minus_answer();
       }
