@@ -45,7 +45,7 @@ app.controller('physicsCtrl', function($scope) {
     $scope.show_btn_text = "Show";
     $scope.is_options = false;
     $scope.is_game = true;
-    $scope.from = 0;
+    $scope.from = 1;
     $scope.to = 10;
     $scope.options_class = "";
     $scope.game_class = "active";
@@ -70,7 +70,7 @@ app.controller('physicsCtrl', function($scope) {
 
     $scope.skip = function(){
       $scope.genExp();
-      angular.element('#focus').trigger('focus');
+      angular.element('#focus1').trigger('focus');
     }
 
     $scope.show_answer = function(){
@@ -80,7 +80,7 @@ app.controller('physicsCtrl', function($scope) {
       } else {
         $scope.show_btn_text = "Show";
       }
-      angular.element('#focus').trigger('focus');
+      angular.element('#focus1').trigger('focus');
     }
     $scope.check_answer = function(){
       if($scope.minus_button_text == '-'){
@@ -96,7 +96,7 @@ app.controller('physicsCtrl', function($scope) {
         $scope.input_class = "red-border";
       }
 
-      angular.element('#focus').trigger('focus');
+      angular.element('#focus1').trigger('focus');
       $scope.user_answer = "";
       $scope.minus_button_text = '+';
     }
@@ -115,18 +115,7 @@ app.controller('physicsCtrl', function($scope) {
       }
     }
 
-    $scope.minus_answer = function(){
-      if($scope.minus_button_text == '+'){
-        $scope.user_answer1 = '-' + $scope.user_answer;
-        $scope.minus_button_text = '-';
-      } else {
-        $scope.user_answer1 = $scope.user_answer;
-        $scope.minus_button_text = '+';
-      }
-      angular.element('#focus').trigger('focus');
-    }
-
-    $scope.genExp = function (){
+    $scope.genExp = function(){
       fq_dict={
         'S':['m', 'cm', 'km'],
         'v':['m/s', 'km/s', 'cm/s'],
@@ -144,7 +133,7 @@ app.controller('physicsCtrl', function($scope) {
           }
         }
 
-        var num = Math.floor((Math.random() * 10) + 1);
+        var num = Math.floor((Math.random() * $scope.to) + $scope.from);
         var answer = 0;
 
         if (um == 'm' && um1 == 'cm') {
@@ -226,7 +215,7 @@ app.controller('physicsCtrl', function($scope) {
       $scope.is_game = true;
       $scope.options_class = "";
       $scope.game_class = "active";
-      angular.element('#focus').trigger('focus');
+      angular.element('#focus1').trigger('focus');
     }
 
     $scope.options = function(){
@@ -237,7 +226,7 @@ app.controller('physicsCtrl', function($scope) {
     }
 
     $scope.save_changes = function(){
-      $scope.genExp(parseInt($scope.from), parseInt($scope.to));
+      $scope.genExp();
     }
 });
 
